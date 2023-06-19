@@ -1,6 +1,9 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 pdf/
+doc/toc.md
+doc/*.xmind
+dataset/
 tnews-finetuning*
 contribute.md
 *.drawio
