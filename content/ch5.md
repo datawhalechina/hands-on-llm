@@ -268,14 +268,14 @@ torchrun --nproc_per_node 8 --nnodes 2 --master_addr ${master_addr} --master_por
 
 ## Deepspeed
 
-[DeepSpeed](https://github.com/microsoft/DeepSpeed)实现了[ZeRO](https://arxiv.org/abs/1910.02054)论文中描述的所有内容。目前，它全面支持：
+[DeepSpeed](https://github.com/microsoft/DeepSpeed)是微软推出的大规模分布式训练工具，实现了[ZeRO](https://arxiv.org/abs/1910.02054)论文中描述的所有内容。目前，它全面支持：
 
-1. 优化器状态分区（ZeRO stage 1）
-2. 梯度划分（ZeRO stage 2）
-3. 参数划分（ZeRO stage 3）
+1. 优化器状态切分（ZeRO stage 1）
+2. 梯度切分（ZeRO stage 2）
+3. 参数切分（ZeRO stage 3）
 4. 自定义混合精度训练处理
 5. 一系列fast CUDA-extension-based optimizers
-6. ZeRO-Offload到 CPU 和磁盘/NVMe
+6. ZeRO-Offload到CPU和磁盘/NVMe
 
 注：如果显存充足，可优先考虑stage 2，对应的配置文件是configs/deepspeed_config.json。如果显存不足，可采用stage 3，该模式采用模型参数并行，可显著减小显存占用，对应的配置文件是configs/deepspeed_config_stage3.json。（在stage=3 模式下，默认不会保存模型的权重，要指定stage3_gather_16bit_weights_on_model_save 为True）
 
@@ -319,18 +319,10 @@ $$
 
 
 ## 优化器
-DeepSpeed 原生支持**Adam**、**AdamW**、**OneBitAdam**、**Lamb**和**OneBitLamb**
+DeepSpeed原生支持**Adam**、**AdamW**、**OneBitAdam**、**Lamb**和**OneBitLamb**
 
-belle采用了AdamW优化器，它是 `Adam` 优化器的一种变体。它的作用是基于梯度更新神经网络的参数，使得损失函数最小化。
+本项目采用了AdamW优化器，它是 `Adam` 优化器的一种变体。它的作用是基于梯度更新神经网络的参数，使得损失函数最小化。
 
 AdamW 的名称来自于两个部分：`Adam` 和 `Weight Decay`。其中，`Adam` 优化器是一种基于梯度的优化方法，它可以自适应地调整每个参数的学习率，同时具有较好的收敛性能和鲁棒性。`Weight Decay` 是正则化的一种形式，用于防止过拟合，它通过对权重进行衰减来限制模型复杂度。
 
 相比于标准的 `Adam` 优化器，`AdamW` 引入了一个额外的权重衰减项，它在每次参数更新时对权重进行衰减，从而更加有效地控制模型的复杂度。这个权重衰减项的形式与标准的 L2 正则化类似，但是它被证明在某些情况下可以更好地控制模型的过拟合。
-
-
-## 混合精度训练
-
-本项目使用NVIDIA的[Apex](https://nvidia.github.io/apex/)混合精度（FP16）进行训练。
-
-apex的配置可参考：
-1. https://github.com/NVIDIA/apex
