@@ -13,7 +13,7 @@
 ### 方法介绍
 论文：***The Power of Scale for Parameter-Efficient Prompt Tuning***
 
-prompt turning是一种简单易用的高效微调方法，该方法同样是希望下游任务能够融合预训练模型的鲜艳只是，并且能够根据很少的数据集队模型的蓄念目标进行修正。prompt turning采用类似“提示模板”的做法来修正该问题。其核心做法是给每个任务定义了自己的Prompt，然后拼接到数据上作为输入，但只在输入层加入prompt tokens，并且不需要加入 MLP 进行调整来解决难训练的问题。并且从论文的描述中，随着参数增加，prompt turning的方法会逼近全参数微调的结果。
+prompt turning是一种简单易用的高效微调方法，该方法同样是希望下游任务能够融合预训练模型的先验知识，并且能够根据很少的数据集队模型的蓄念目标进行修正。prompt turning采用类似“提示模板”的做法来修正该问题。其核心做法是给每个任务定义了自己的Prompt，然后拼接到数据上作为输入，但只在输入层加入prompt tokens，并且不需要加入 MLP 进行调整来解决难训练的问题。并且从论文的描述中，随着参数增加，prompt turning的方法会逼近全参数微调的结果。
 
 ![prompt-tuning_1](imgs/prompt_turning1.png) ![prompt-tuning_2](imgs/prompt_turning_2.png)
 
