@@ -2,10 +2,10 @@
 前文已经对全量微调进行了详细的介绍，本部分我们将介绍高效调参。随着大模型的参数量逐渐增大，百亿、千亿级别的模型逐渐涌现，对大模型进行全量微调的成本很高。需要依赖较高的显存，且训练速度慢、耗时唱。高效参数微调（parameter-efficient finetuning techniques，PEFT）是指微调大模型过程中只训练一部分参数，该方案的优势是硬件资源要求低、训练速度快、耗时短。
 
 本部分将介绍一下五种高效调参的方法
-- prompt turning
-- prefix turning
-- p turning
-- adapter
+- prompt tuning
+- prefix tuning
+- p tuning
+- adapter tuning
 - LoRA
 
 ## 6.1 prompt turning
