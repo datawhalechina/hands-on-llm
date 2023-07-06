@@ -18,6 +18,7 @@ def main():
         "-n",
         "--number",
         required=False,
+        type=int,
         default=100,
         help="Index number of docs")
     args = parser.parse_args()
