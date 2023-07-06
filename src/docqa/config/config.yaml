@@ -1,7 +1,7 @@
 llm:
   model_id: "/data/hsc/cache/models/BELLE-LLaMA-7B-2M/"
   triton_host: "127.0.0.1:9001"
-  triton_model": "fastertransformer"
+  triton_model: "fastertransformer"
 emb:
   model_id: "/data/hsc/cache/models/moka-ai_m3e-base/"
   triton_host: "127.0.0.1:9001"

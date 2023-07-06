@@ -36,10 +36,10 @@ class Recaller:
         score_threshold: float
     ) -> List[Dict]:
         if Recaller._get_embedding.nfails >= FUSE_COUNT:
-            return []
+            return
         q_emd = self._get_embedding([q])
         if q_emd is None:
-            return []
+            return
         qv = q_emd[0]
         hits = self.vec_index_ins.search(
             collection, qv, topn, score_threshold

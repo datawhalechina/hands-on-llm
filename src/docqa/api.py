@@ -10,7 +10,7 @@ from .app import Recaller, Prompter
 from .dd_model import GenerateConfig, LlmMessage
 from .config import (
     llm_config, recaller_config,
-    STREAM_DELAY
+    STREAM_DELAY, logger
 )
 
 
@@ -88,6 +88,8 @@ class LlmServer:
         sents = []
         for txt in texts:
             sents.append(f"Human: {txt} \n\nAssistant: ")
+        
+        logger.info(f"prompts: {sents}")
 
         for resp_text in self.stream_generate(sents):
             resp_str = resp_text[0].replace(sents[0], "")

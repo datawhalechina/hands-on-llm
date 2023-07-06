@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 
 class Prompter:
@@ -24,9 +24,9 @@ class Prompter:
     def build_docqa_prompt(
         self,
         q: str,
-        docs: List[str],
+        docs: Optional[List[str]],
     ) -> str:
-        if not docs:
+        if docs is None:
             prompt = "你现在是一台服务器，你的服务不可用了。用户正在访问，你这样回复用户："
             return prompt
         doc_str = "\n".join(docs)
