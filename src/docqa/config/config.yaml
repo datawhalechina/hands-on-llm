@@ -1,0 +1,17 @@
+llm:
+  model_id: "/data/hsc/cache/models/BELLE-LLaMA-7B-2M/"
+  triton_host: "127.0.0.1:9001"
+  triton_model": "fastertransformer"
+emb:
+  model_id: "/data/hsc/cache/models/moka-ai_m3e-base/"
+  triton_host: "127.0.0.1:9001"
+  triton_model: "m3e"
+  dim: 768
+recall:
+  host: "localhost"
+  port: 6334
+  collection: "docqa_tcm"
+  dim: 768
+  topn: 1
+  threshold: 0.8
+  index_batch_size: 128

@@ -1,0 +1,1 @@
+from docqa import app

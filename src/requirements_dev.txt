@@ -1,0 +1,8 @@
+qdrant_client
+fastapi
+fastapi_offline
+sse_starlette
+httpx
+httpx_sse
+pytest
+pytest_asyncio

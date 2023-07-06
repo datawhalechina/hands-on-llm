@@ -1,5 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+deploy/
+step.txt
+*.json
 pdf/
 doc/toc.md
 doc/*.xmind

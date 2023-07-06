@@ -1,0 +1,5 @@
+qdrant_client
+fastapi
+fastapi_offline
+sse_starlette
+tenacity
