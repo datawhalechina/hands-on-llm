@@ -3,7 +3,7 @@
 
 <script>
 if(typeof(EventSource) !== "undefined") {
-  var evtSource = new EventSource("http://172.17.40.6:9527/api/v1/steam_ask?q=写一首诗，赞美大自然");
+  var evtSource = new EventSource("http://172.17.40.6:9527/api/v1/steam_ask?q=胆石症的治疗应注意什么？");
   evtSource.onmessage = function(event) {
     var msg = JSON.parse(event.data);
     if(msg.status === "stop") {
