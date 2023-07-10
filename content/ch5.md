@@ -41,28 +41,28 @@
 
 其中`id`表示段落id。`text`表示文档。
 `annotations`表示包含多个问题-答案对，每个问题-答案对中`Q`表示问题，`A`表示答案。
-问题生成任务需要根据文档及答案自动生成相应的问题，即实现“文档+答案→问题”的流程。
+问题生成任务需要根据文档及问题，自动生成相应的答案，即实现“文档+问题→答案”的流程。
 
-## 数据格式转换（todo）
+## 数据格式转换
 
-在模型训练之前，需要使用convert_to_conv_data.py脚本将数据转换成统一的格式:
+在模型训练之前，需要使用convert_data.py脚本将数据转换成统一的格式:
 
 ```bash
-python scripts/convert_to_conv_data.py --orig_data school_math_0.25M.json --write_data school_math_0.25M_conv.json --dataset_name bellemath
+python scripts/convert_data.py --orig_data train.json --write_data belle.json --dataset_name belle
 ```
 
 转换后的数据如下：
 ```bash
-{"id": "bellemath42", "conversations": [{"from": "human", "value": " 一箱鸡蛋有25个，小明爸爸每天给他9个鸡蛋吃，那么一箱鸡蛋能够供小明吃几天？"}, {"from": "assistant", "value": "\n一箱鸡蛋有25个，小明每天吃9个鸡蛋，用除法计算一下即可：\n25 ÷ 9 = 2余7\n也就是说，小明第1天到第2天共吃2个鸡蛋，第3天吃剩下的7个鸡蛋。\n因此，一箱鸡蛋能够供小明吃2天。"}]}
-{"id": "bellemath80", "conversations": [{"from": "human", "value": "小明手中有15颗糖果，他想要分给他的朋友小红和小李，每人分得的糖果数是3颗，那么他还剩下几颗糖果？"}, {"from": "assistant", "value": " \n1. 该题可以用减法来解决。小明手中有15颗糖果，每人分得3颗，所以小红和小李一共分得6颗糖果（3+3=6）。\n2. 然后再用原来的糖果总数减去分给小红和小李的糖果数，即可得到小明手中剩余的糖果数。 \n计算过程如下：\n15 - 6 = 9\n所以，小明还剩下9颗糖果。"}]}
+{"id": "belle-1", "conversations": [{"from": "human", "value": "根据给定文本回答问题，如果没有答案或答案不确定，回复“未涉及”。\n给定文本：黄帝道：什麽叫重实？岐伯说：所谓重实，如大热病人，邪气甚热，而脉象又盛满，内外俱实，便叫重实\n问题：重实是指什么？"}, {"from": "assistant", "value": "\n所谓重实，如大热病人，邪气甚热，而脉象又盛满，内外俱实，便叫重实"}]}
+{"id": "belle-2", "conversations": [{"from": "human", "value": "根据给定文本回答问题，如果没有答案或答案不确定，回复“未涉及”。\n给定文本：黄帝道：什麽叫重实？岐伯说：所谓重实，如大热病人，邪气甚热，而脉象又盛满，内外俱实，便叫重实\n问题：重实之人的脉象是什么样？"}, {"from": "assistant", "value": "\n脉象又盛满"}]}
 ```
 
-## 数据切分（todo）
+## 数据切分
 
 这里选取前1000条作为验证集，其余数据作为训练集
 ```bash
-head -n 1000 school_math_0.25M_conv.json > belleMath-dev1K.json
-tail -n +1001 school_math_0.25M_conv.json > belleMath.json
+head -n 1000 belle.json > belle_dev.json
+tail -n +1001 belle.json > belle_train.json
 ```
 
 通过以上流程，全量微调的数据就准备好了。
