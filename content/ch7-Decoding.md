@@ -172,10 +172,6 @@ $$
 - ALiBi: train shot, infer long
 - PI: 
 
-
-
-
-
 ## CTG
 
 ![](imgs/ch7-ctg.png)
